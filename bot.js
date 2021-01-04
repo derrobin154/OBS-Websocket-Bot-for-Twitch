@@ -35,7 +35,7 @@ obs.connect({address: `${process.env.OBS_IP}:${process.env.OBS_PORT}`, password:
 client.on('message', (channel, context, message, self) => {
     const prefix = "!";
     if (message.substr(0, prefix.length) === prefix) {
-        commandResolver.resolve(client, channel, context, message, self)
+        return commandResolver.resolve(client, channel, context, message, self)
     }
 })
 
