@@ -45,7 +45,7 @@ client.on('connected', (addr, port) => {
     }, 1000)
 });
 obs.on('error', err => {
-    console.error('Socket error:', err);
+    console.error('Socket Error:', err);
 });
 
 module.exports = {obs}
