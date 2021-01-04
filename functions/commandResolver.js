@@ -12,7 +12,12 @@ let commandResolver = (client, channel, context, message, self) => {
         commandFile.run(client, message, command.args, context, channel, self);
         console.log(`${context.username} run command: ${message}`);
     } catch (err) {
-        console.error(`${context.username} run unknown command: ${message}`);
+        if (err.code !== "MODULE_NOT_FOUND") {
+            console.error(`${context.username} run command: ${message} with following error:\n${err}`)
+        } else {
+            console.error(`${context.username} run unknown command: ${message}`);
+        }
+
     }
 }
 
