@@ -23,11 +23,13 @@ const obs = new OBSWebSocketJS();
 console.log("OBS Websocket Bot for Twitch by derrobin154 | Version 1.0");
 obs.connect({address: `${process.env.OBS_IP}:${process.env.OBS_PORT}`, password: process.env.OBS_PASSWORD}).then(() => {
     console.log("Verbindung mit OBS hergestellt")
+    client.connect();
 }).catch(err => {
     console.error(`Fehler bei der Verbindung mit OBS Websockets. Bot stoppt.\nFehler: ${err.error}`);
-    process.exit();
-})
-client.connect();
+    setTimeout(function () {
+        process.exit();
+    }, 2000)
+});
 
 
 client.on('message', (channel, context, message, self) => {
