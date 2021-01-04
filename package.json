@@ -1,0 +1,24 @@
+{
+  "name": "twitchobswebsocket",
+  "version": "1.0.0",
+  "description": "A Twitch Bot for controling OBS via Websocket",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derrobin154/OBS-Websocket-Bot-for-Twitch"
+  },
+  "author": "derrobin154",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derrobin154/twitchobswebsocket/issues"
+  },
+  "homepage": "https://github.com/derrobin154/twitchobswebsocket#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "obs-websocket-js": "^4.0.2",
+    "tmi.js": "^1.7.1"
+  }
+}
