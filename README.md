@@ -1,8 +1,8 @@
-#OBS Websocket Bot for Twitch
+# OBS Websocket Bot for Twitch
 Dieser Bot hat in der Version 1.0 die Funktion die Kamera in OBS auf vordefinierte Positionen zu verschieben. 
 Dies geht mittels !camera <position> (Ausführbar für den Broadcaster und die Moderatoren).
 
-##Installation
+## Installation
 Folgendes muss auf dem PC vorhanden sein:
 
 * [NodeJS](https://nodejs.org/en/)
