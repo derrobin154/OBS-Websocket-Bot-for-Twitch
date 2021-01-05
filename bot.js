@@ -3,7 +3,7 @@
     Author: derrobin154
     Used Packages: tmi.js@npm, obs-websocket-js@npm, dotenv@npm, node-fetch@npm
  */
-const version = "1.0";
+const version = "2.0";
 const twitch = require('tmi.js');
 const dotenv = require('dotenv').config({path: './.env'});
 const client = new twitch.client({
