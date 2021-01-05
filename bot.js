@@ -1,8 +1,9 @@
 /*
     OBS Websocket Bot for Twitch
     Author: derrobin154
-    Used Packages: tmi.js@npm, obs-websocket-js@npm, dotenv@npm
+    Used Packages: tmi.js@npm, obs-websocket-js@npm, dotenv@npm, node-fetch@npm
  */
+const version = "1.0";
 const twitch = require('tmi.js');
 const dotenv = require('dotenv').config({path: './.env'});
 const client = new twitch.client({
@@ -19,18 +20,35 @@ const client = new twitch.client({
 const commandResolver = require('./functions/commandResolver.js');
 const OBSWebSocketJS = require('obs-websocket-js');
 const obs = new OBSWebSocketJS();
+const fetch = require("node-fetch");
 
-console.log("OBS Websocket Bot for Twitch by derrobin154 | Version 1.0");
-obs.connect({address: `${process.env.OBS_IP}:${process.env.OBS_PORT}`, password: process.env.OBS_PASSWORD}).then(() => {
-    console.log("Verbindung mit OBS hergestellt")
-    client.connect();
-}).catch(err => {
-    console.error(`Fehler bei der Verbindung mit OBS Websockets. Bot stoppt.\nFehler: ${err.error}`);
-    setTimeout(function () {
-        process.exit();
-    }, 2000)
-});
+async function GetLatestReleaseInfo() {
+    const release = await fetch("https://api.github.com/repos/derrobin154/OBS-Websocket-Bot-for-Twitch/releases/latest");
+    return release.json();
+}
 
+GetLatestReleaseInfo().then(data => {
+    if (data.tag_name !== version && data.message !== "Not Found") {
+        console.error(`UPDATE: Version ${data.tag_name} wurde veröffentlicht.\nBitte gehe auf ${data.html_url} und lade die neuste Version runter.\nBot stoppt.`)
+        setTimeout(function () {
+            process.exit();
+        }, 2000);
+    } else {
+        console.log(`OBS Websocket Bot for Twitch by derrobin154 | Version ${version}`);
+        obs.connect({
+            address: `${process.env.OBS_IP}:${process.env.OBS_PORT}`,
+            password: process.env.OBS_PASSWORD
+        }).then(() => {
+            console.log("Verbindung mit OBS hergestellt")
+            client.connect();
+        }).catch(err => {
+            console.error(`Fehler bei der Verbindung mit OBS Websockets. Bot stoppt.\nFehler: ${err.error}`);
+            setTimeout(function () {
+                process.exit();
+            }, 2000)
+        });
+    }
+})
 
 client.on('message', (channel, context, message, self) => {
     const prefix = "!";

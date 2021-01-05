@@ -18,6 +18,7 @@
   "homepage": "https://github.com/derrobin154/twitchobswebsocket#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1",
     "obs-websocket-js": "^4.0.2",
     "tmi.js": "^1.7.1"
   }
