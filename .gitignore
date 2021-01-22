@@ -211,6 +211,5 @@ pip-selfcheck.json
 # Used by previous versions of JEnv
 .jenv-version
 
-.env
+*.env
 .idea/*
-camerapos.json

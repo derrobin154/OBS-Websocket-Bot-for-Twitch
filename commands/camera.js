@@ -1,5 +1,5 @@
 const {obs} = require("../bot.js")
-const camerapositions = require("../camerapos.json");
+const camerapositions = require("../json/camerapos.json");
 
 exports.run = (client, message, args, context, channel, self) => {
     if (args.length === 0) return;
